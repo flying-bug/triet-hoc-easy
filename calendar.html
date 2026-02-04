@@ -72,6 +72,55 @@
         </div>
     </main>
 
+    <!-- Modal for daily feng shui info -->
+    <div id="fengShuiModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalDate">Thông tin ngày</h3>
+                <span class="close-modal" onclick="closeFengShuiModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="feng-shui-info">
+                    <div class="lunar-info">
+                        <h4>Thông tin âm lịch</h4>
+                        <p><strong>Ngày âm lịch:</strong> <span id="lunarDate"></span></p>
+                        <p><strong>Can Chi:</strong> <span id="canChi"></span></p>
+                        <p><strong>Giờ hoàng đạo:</strong> <span id="goodHours"></span></p>
+                    </div>
+                    
+                    <div class="feng-shui-details">
+                        <h4>Phong thủy trong ngày</h4>
+                        <div class="good-bad-section">
+                            <div class="good-section">
+                                <h5>🟢 Nên làm:</h5>
+                                <ul id="goodActivities"></ul>
+                            </div>
+                            <div class="bad-section">
+                                <h5>🔴 Không nên:</h5>
+                                <ul id="badActivities"></ul>
+                            </div>
+                        </div>
+                        
+                        <div class="direction-info">
+                            <h5>Hướng tốt trong ngày:</h5>
+                            <p id="goodDirection"></p>
+                        </div>
+                        
+                        <div class="color-info">
+                            <h5>Màu sắc may mắn:</h5>
+                            <div class="lucky-colors" id="luckyColors"></div>
+                        </div>
+                        
+                        <div class="advice-section">
+                            <h5>Lời khuyên:</h5>
+                            <p id="dailyAdvice"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2026 Trang Web Triết Học. Tất cả quyền được bảo lưu.</p>

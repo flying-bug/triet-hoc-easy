@@ -412,3 +412,236 @@
 .calendar-wrapper {
     animation: fadeIn 0.6s ease;
 }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #B22222 0%, #8B0000 100%);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-modal {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+}
+
+.close-modal:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.3);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.feng-shui-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.lunar-info {
+    background: linear-gradient(135deg, rgba(178, 34, 34, 0.05) 0%, rgba(139, 0, 0, 0.05) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border-left: 4px solid #B22222;
+}
+
+.lunar-info h4 {
+    color: #B22222;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.lunar-info p {
+    margin: 8px 0;
+    color: #2c3e50;
+}
+
+.feng-shui-details h4 {
+    color: #B22222;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.good-bad-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.good-section, .bad-section {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.good-section {
+    border-left: 4px solid #27ae60;
+}
+
+.bad-section {
+    border-left: 4px solid #e74c3c;
+}
+
+.good-section h5 {
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+
+.bad-section h5 {
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.good-section ul, .bad-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.good-section li, .bad-section li {
+    padding: 5px 0;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.good-section li:before {
+    content: "✓ ";
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.bad-section li:before {
+    content: "✗ ";
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.direction-info, .color-info, .advice-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.direction-info h5, .color-info h5, .advice-section h5 {
+    color: #B22222;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.lucky-colors {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.color-item:hover {
+    transform: scale(1.1);
+}
+
+.color-item::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #2c3e50;
+    white-space: nowrap;
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        max-height: 85vh;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .good-bad-section {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .modal-header {
+        padding: 15px 20px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.3rem;
+    }
+}
