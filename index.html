@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triết Học - 12 Chủ Đề Cơ Bản</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container" data-active="home"></div>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Khám Phá Thế Giới Triết Học</h1>
+                <p>Tìm hiểu 12 chủ đề cơ bản của triết học Marxist-Leninist</p>
+                <button class="cta-button" onclick="scrollToTopics()">Bắt Đầu Học</button>
+            </div>
+        </section>
+
+        <section id="topics" class="topics-section">
+            <div class="container">
+                <h2>12 Chủ Đề Triết Học</h2>
+                <div class="topics-grid" id="topicsGrid">
+                    <!-- Topics will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Giới Thiệu Môn Học</h2>
+                <p>Môn học triết học giúp chúng ta hiểu về thế giới quan, nhân sinh quan và phương pháp luận khoa học. 
+                Thông qua 12 chủ đề cơ bản, chúng ta sẽ khám phá những vấn đề then chốt của triết học Marxist-Leninist.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for topic details -->
+    <div id="topicModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Topic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Triết Học Easy. Nhóm 7.</p>
+        </div>
+    </footer>
+
+    <script src="header.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

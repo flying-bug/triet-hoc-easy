@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Thi Triết Học</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quiz-styles.css">
+</head>
+<body>
+    <div id="header-container" data-active="quiz"></div>
+
+    <main class="quiz-container">
+        <!-- Màn hình chọn chế độ -->
+        <div id="mode-selection" class="quiz-section active">
+            <div class="container">
+                <h1>Chọn Chế Độ Ôn Thi</h1>
+                <div class="mode-grid">
+                    <div class="mode-card" onclick="startQuiz('practice')">
+                        <div class="mode-icon">📚</div>
+                        <h3>Luyện Tập</h3>
+                        <p>Ôn từng câu một, có giải thích chi tiết</p>
+                        <ul>
+                            <li>Xem đáp án ngay lập tức</li>
+                            <li>Giải thích chi tiết</li>
+                            <li>Không giới hạn thời gian</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mode-card" onclick="startQuiz('test')">
+                        <div class="mode-icon">⏱️</div>
+                        <h3>Thi Thử</h3>
+                        <p>Mô phỏng kỳ thi thật, có thời gian</p>
+                        <ul>
+                            <li>50 câu hỏi</li>
+                            <li>Thời gian: 90 phút</li>
+                            <li>Kết quả cuối bài</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mode-card" onclick="startQuiz('review')">
+                        <div class="mode-icon">🔄</div>
+                        <h3>Ôn Câu Sai</h3>
+                        <p>Ôn lại những câu đã làm sai</p>
+                        <ul>
+                            <li>Chỉ câu đã sai</li>
+                            <li>Tăng cường ghi nhớ</li>
+                            <li>Theo dõi tiến độ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình làm bài -->
+        <div id="quiz-screen" class="quiz-section">
+            <div class="container">
+                <!-- Thanh tiến độ -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                    <div class="progress-text">
+                        <span id="current-question">1</span> / <span id="total-questions">50</span>
+                    </div>
+                </div>
+
+                <!-- Thông tin bài thi -->
+                <div class="quiz-info">
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-label">Đúng:</span>
+                            <span id="correct-count" class="stat-value correct">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Sai:</span>
+                            <span id="wrong-count" class="stat-value wrong">0</span>
+                        </div>
+                        <div class="stat" id="timer-display">
+                            <span class="stat-label">Thời gian:</span>
+                            <span id="timer" class="stat-value">90:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Câu hỏi -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">Câu <span id="question-num">1</span></span>
+                        <div class="question-actions">
+                            <button class="bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">
+                                <span class="bookmark-icon">🔖</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-text" id="question-text">
+                        Đang tải câu hỏi...
+                    </div>
+                    
+                    <div class="answers-grid" id="answers-grid">
+                        <!-- Các đáp án sẽ được tạo động -->
+                    </div>
+                    
+                    <div class="explanation" id="explanation" style="display: none;">
+                        <h4>Giải thích:</h4>
+                        <p id="explanation-text"></p>
+                    </div>
+                </div>
+
+                <!-- Điều khiển -->
+                <div class="quiz-controls">
+                    <button class="btn btn-secondary" id="prev-btn" onclick="previousQuestion()">
+                        ← Câu trước
+                    </button>
+                    
+                    <div class="control-center">
+                        <button class="btn btn-outline" onclick="showQuestionList()">
+                            Danh sách câu hỏi
+                        </button>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">
+                        Câu tiếp →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách câu hỏi -->
+        <div id="question-list" class="quiz-section">
+            <div class="container">
+                <div class="question-list-header">
+                    <h2>Danh Sách Câu Hỏi</h2>
+                    <button class="btn btn-secondary" onclick="hideQuestionList()">Đóng</button>
+                </div>
+                
+                <div class="question-grid" id="question-grid">
+                    <!-- Danh sách câu hỏi sẽ được tạo động -->
+                </div>
+                
+                <div class="list-actions">
+                    <button class="btn btn-primary" onclick="finishQuiz()">Nộp Bài</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kết quả -->
+        <div id="result-screen" class="quiz-section">
+            <div class="container">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h1>Kết Quả Bài Thi</h1>
+                        <div class="score-circle">
+                            <div class="score-text">
+                                <span id="final-score">0</span>
+                                <span class="score-total">/50</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <div class="stat-icon correct">✓</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="result-correct">0</div>
+                                <div class="stat-label">Câu đúng</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-stat">
+                            <div class="stat-icon wrong">✗</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="result-wrong">0</div>
+                                <div class="stat-label">Câu sai</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-stat">
+                            <div class="stat-icon skip">-</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="result-skip">0</div>
+                                <div class="stat-label">Bỏ qua</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="reviewAnswers()">Xem Lại Đáp Án</button>
+                        <button class="btn btn-secondary" onclick="restartQuiz()">Làm Lại</button>
+                        <button class="btn btn-outline" onclick="goHome()">Trang Chủ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="header.js"></script>
+    <script src="quiz-data.js"></script>
+    <script src="quiz-app.js"></script>
+</body>
+</html>
