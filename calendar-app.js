@@ -247,6 +247,7 @@ class PhilosophyCalendar {
         }
         this.renderCalendar();
         this.updatePhilosopher();
+        this.loadEvents();
     }
     
     nextMonth() {
@@ -257,6 +258,7 @@ class PhilosophyCalendar {
         }
         this.renderCalendar();
         this.updatePhilosopher();
+        this.loadEvents();
     }
     
     renderCalendar() {
