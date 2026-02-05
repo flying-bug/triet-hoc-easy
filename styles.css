@@ -327,18 +327,17 @@ body {
 
 .scrolling-wrapper {
     display: flex;
-    animation: scrollLoop 25s linear infinite;
+    animation: scrollLoop 30s linear infinite;
     gap: 30px;
-    width: max-content;
-    transform-origin: center;
+    will-change: transform;
 }
 
 @keyframes scrollLoop {
     0% {
-        transform: translateX(120vw) translateY(-200px) rotate(-3deg);
+        transform: translateX(0) translateY(0);
     }
     100% {
-        transform: translateX(-120%) translateY(200px) rotate(-3deg);
+        transform: translateX(-50%) translateY(-2.6vw);
     }
 }
 
@@ -347,16 +346,23 @@ body {
     border-radius: 0;
     padding: 15px 12px;
     text-align: center;
+    width: 160px;
     min-width: 160px;
+    max-width: 160px;
+    height: 180px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
     flex-shrink: 0;
-    transform: rotate(3deg) skewY(-3deg);
+    transform: rotate(0deg);
     border: 2px solid #FFD700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .philosopher-item:hover {
-    transform: rotate(3deg) skewY(-3deg) translateY(-6px) scale(1.05);
+    transform: rotate(0deg) translateY(-6px) scale(1.05);
     box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
     border-color: #FFA500;
 }
@@ -382,7 +388,6 @@ body {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 4px;
-    transform: skewY(3deg);
     font-style: italic;
 }
 
@@ -391,7 +396,6 @@ body {
     font-size: 0.8rem;
     font-weight: 500;
     margin: 0;
-    transform: skewY(3deg);
     font-style: italic;
 }
 

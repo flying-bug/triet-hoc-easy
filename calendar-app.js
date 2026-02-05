@@ -127,36 +127,61 @@ class PhilosophyCalendar {
         ];
         
         this.events = [
-            {
-                date: '2026-01-01',
-                title: 'Năm Mới 2026',
-                description: 'Bắt đầu năm học mới với tinh thần học tập triết học'
-            },
-            {
-                date: '2026-02-14',
-                title: 'Ngày sinh Karl Marx',
-                description: 'Kỷ niệm ngày sinh của nhà tư tưởng vĩ đại'
-            },
-            {
-                date: '2026-03-15',
-                title: 'Tuần lễ triết học',
-                description: 'Các hoạt động học tập và thảo luận về triết học'
-            },
-            {
-                date: '2026-04-22',
-                title: 'Ngày sinh Lenin',
-                description: 'Tưởng nhớ V.I. Lenin và tư tưởng của ông'
-            },
-            {
-                date: '2026-05-19',
-                title: 'Ngày sinh Hồ Chí Minh',
-                description: 'Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh'
-            },
-            {
-                date: '2026-09-02',
-                title: 'Ngày Quốc Khánh',
-                description: 'Kỷ niệm Cách mạng Tháng Tám và Quốc khánh Việt Nam'
-            }
+            // Tháng 1
+            { date: '2026-01-01', title: 'Tết Dương lịch', description: 'Năm mới 2026 🎉' },
+            { date: '2026-01-09', title: 'Ngày Học sinh – Sinh viên Việt Nam', description: 'Kỷ niệm ngày truyền thống học sinh sinh viên' },
+            
+            // Tháng 2
+            { date: '2026-02-14', title: 'Valentine', description: 'Ngày lễ tình nhân 💕' },
+            { date: '2026-02-17', title: 'Tết Nguyên Đán (Bính Ngọ)', description: 'Tết Âm lịch 2026 🧧🐎' },
+            { date: '2026-02-18', title: 'Mùng 2 Tết', description: 'Nghỉ Tết Nguyên Đán' },
+            { date: '2026-02-19', title: 'Mùng 3 Tết', description: 'Nghỉ Tết Nguyên Đán' },
+            { date: '2026-02-20', title: 'Mùng 4 Tết', description: 'Nghỉ Tết Nguyên Đán' },
+            { date: '2026-02-21', title: 'Mùng 5 Tết', description: 'Nghỉ Tết Nguyên Đán' },
+            { date: '2026-02-27', title: 'Ngày Thầy thuốc Việt Nam', description: 'Tôn vinh ngành y tế Việt Nam' },
+            
+            // Tháng 3
+            { date: '2026-03-08', title: 'Ngày Quốc tế Phụ nữ', description: 'Tôn vinh phụ nữ trên toàn thế giới 🌷' },
+            { date: '2026-03-20', title: 'Ngày Quốc tế Hạnh phúc', description: 'International Day of Happiness' },
+            { date: '2026-03-26', title: 'Ngày thành lập Đoàn TNCS Hồ Chí Minh', description: 'Kỷ niệm thành lập Đoàn thanh niên' },
+            
+            // Tháng 4
+            { date: '2026-04-07', title: 'Giỗ Tổ Hùng Vương', description: 'Ngày 10/3 Âm lịch - Tưởng nhớ công đức Tổ tiên' },
+            { date: '2026-04-22', title: 'Ngày Trái Đất', description: 'Ngày Quốc tế Trái Đất 🌍' },
+            { date: '2026-04-30', title: 'Ngày Giải phóng miền Nam', description: 'Thống nhất đất nước 30/4/1975 🇻🇳' },
+            
+            // Tháng 5
+            { date: '2026-05-01', title: 'Quốc tế Lao động', description: 'Ngày Quốc tế Lao động 1/5' },
+            { date: '2026-05-07', title: 'Chiến thắng Điện Biên Phủ', description: 'Kỷ niệm chiến thắng lịch sử 7/5/1954' },
+            { date: '2026-05-19', title: 'Sinh nhật Chủ tịch Hồ Chí Minh', description: 'Kỷ niệm ngày sinh Bác Hồ (19/5/1890)' },
+            
+            // Tháng 6
+            { date: '2026-06-01', title: 'Ngày Quốc tế Thiếu nhi', description: 'Ngày hội của các em thiếu nhi 🎈' },
+            { date: '2026-06-05', title: 'Ngày Môi trường Thế giới', description: 'Bảo vệ môi trường sống 🌱' },
+            { date: '2026-06-21', title: 'Ngày Báo chí Cách mạng Việt Nam', description: 'Kỷ niệm ngày truyền thống báo chí' },
+            
+            // Tháng 7
+            { date: '2026-07-27', title: 'Ngày Thương binh – Liệt sĩ', description: 'Tưởng nhớ các anh hùng liệt sĩ' },
+            
+            // Tháng 8
+            { date: '2026-08-19', title: 'Cách mạng Tháng Tám', description: 'Kỷ niệm Cách mạng Tháng Tám 1945' },
+            
+            // Tháng 9
+            { date: '2026-09-02', title: 'Quốc khánh Việt Nam', description: 'Ngày Quốc khánh nước CHXHCN Việt Nam ⭐🇻🇳' },
+            
+            // Tháng 10
+            { date: '2026-10-01', title: 'Ngày Quốc tế Người cao tuổi', description: 'Tôn vinh người cao tuổi' },
+            { date: '2026-10-10', title: 'Giải phóng Thủ đô', description: 'Kỷ niệm ngày giải phóng Hà Nội 10/10/1954' },
+            { date: '2026-10-20', title: 'Ngày Phụ nữ Việt Nam', description: 'Ngày truyền thống phụ nữ Việt Nam 20/10' },
+            { date: '2026-10-31', title: 'Halloween', description: 'Lễ hội Halloween 🎃' },
+            
+            // Tháng 11
+            { date: '2026-11-20', title: 'Ngày Nhà giáo Việt Nam', description: 'Tôn vinh các thầy cô giáo 20/11 🌹' },
+            
+            // Tháng 12
+            { date: '2026-12-22', title: 'Ngày Quân đội Nhân dân Việt Nam', description: 'Kỷ niệm ngày thành lập QĐND Việt Nam' },
+            { date: '2026-12-24', title: 'Giáng sinh (Noel)', description: 'Đêm Giáng sinh 🎄' },
+            { date: '2026-12-25', title: 'Giáng sinh', description: 'Lễ Giáng sinh 🎅🎄' }
         ];
         
         // Feng Shui data
@@ -372,115 +397,327 @@ class PhilosophyCalendar {
         });
         
         if (currentMonthEvents.length === 0) {
-            eventsList.innerHTML = '<p style="text-align: center; color: #7f8c8d;">Không có sự kiện nào trong tháng này.</p>';
+            eventsList.innerHTML = '<p style="text-align: center; color: #7f8c8d; padding: 40px;">Không có sự kiện nào trong tháng này.</p>';
             return;
         }
         
-        eventsList.innerHTML = currentMonthEvents.map(event => {
+        // Sort events by date
+        currentMonthEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        eventsList.innerHTML = currentMonthEvents.map((event, index) => {
             const eventDate = new Date(event.date);
-            const formattedDate = `${eventDate.getDate()}/${eventDate.getMonth() + 1}/${eventDate.getFullYear()}`;
+            const day = eventDate.getDate();
+            const formattedDate = `${day}/${eventDate.getMonth() + 1}`;
             
             return `
-                <div class="event-item">
-                    <div class="event-date">${formattedDate}</div>
-                    <div class="event-title">${event.title}</div>
-                    <div class="event-description">${event.description}</div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">${formattedDate}</div>
+                        <div class="timeline-title">${event.title}</div>
+                        <div class="timeline-description">${event.description}</div>
+                    </div>
                 </div>
             `;
         }).join('');
     }
     
-    showFengShuiInfo(year, month, day) {
+    async showFengShuiInfo(year, month, day) {
         const date = new Date(year, month, day);
         const dateStr = `${day}/${month + 1}/${year}`;
         
-        // Calculate feng shui info
-        const fengShuiData = this.calculateFengShui(date);
-        
-        // Update modal content
+        // Update modal title
         document.getElementById('modalDate').textContent = `Thông tin ngày ${dateStr}`;
-        document.getElementById('lunarDate').textContent = fengShuiData.lunarDate;
-        document.getElementById('canChi').textContent = fengShuiData.canChi;
-        document.getElementById('goodHours').textContent = fengShuiData.goodHours;
         
-        // Good activities
-        const goodActivitiesList = document.getElementById('goodActivities');
-        goodActivitiesList.innerHTML = fengShuiData.goodActivities.map(activity => 
-            `<li>${activity}</li>`
-        ).join('');
-        
-        // Bad activities
-        const badActivitiesList = document.getElementById('badActivities');
-        badActivitiesList.innerHTML = fengShuiData.badActivities.map(activity => 
-            `<li>${activity}</li>`
-        ).join('');
-        
-        // Good direction
-        document.getElementById('goodDirection').textContent = fengShuiData.goodDirection;
-        
-        // Lucky colors
-        const luckyColorsDiv = document.getElementById('luckyColors');
-        luckyColorsDiv.innerHTML = fengShuiData.luckyColors.map(color => 
-            `<div class="color-item" style="background-color: ${color.hex}" data-color="${color.name}"></div>`
-        ).join('');
-        
-        // Daily advice
-        document.getElementById('dailyAdvice').textContent = fengShuiData.advice;
-        
-        // Show modal
+        // Show modal with loading state
         document.getElementById('fengShuiModal').style.display = 'block';
+        this.showModalLoading();
+        
+        try {
+            // Call API to get real feng shui data
+            const fengShuiData = await this.fetchFengShuiData(year, month + 1, day);
+            this.displayModalResults(fengShuiData);
+        } catch (error) {
+            console.error('Error fetching feng shui data:', error);
+            this.showModalError('Không thể tải thông tin lịch vạn sự. Vui lòng thử lại.');
+        }
     }
     
-    calculateFengShui(date) {
-        const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+    async fetchFengShuiData(year, month, day) {
+        const API_URL = 'https://tuvi.vienaoc.vn/api/v0/lichvansu';
         
-        // Calculate Can Chi (simplified)
-        const canChiIndex = dayOfYear % 60;
-        const canChi = this.canChiCycle[canChiIndex];
+        const requestData = {
+            gio_duong: 6,
+            phut_duong: 0,
+            giay_duong: 0,
+            ingay_duong: day,
+            ithang_duong: month,
+            inam_duong: year,
+            timezone: 7
+        };
         
-        // Calculate lunar date (simplified approximation)
-        const lunarDay = (dayOfYear % 30) + 1;
-        const lunarMonth = Math.floor(dayOfYear / 30) % 12 + 1;
-        const lunarDate = `${lunarDay}/${lunarMonth}`;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
         
-        // Generate good hours
-        const hours = ['Tý (23-01h)', 'Sửu (01-03h)', 'Dần (03-05h)', 'Mão (05-07h)', 
-                      'Thìn (07-09h)', 'Tỵ (09-11h)', 'Ngọ (11-13h)', 'Mùi (13-15h)',
-                      'Thân (15-17h)', 'Dậu (17-19h)', 'Tuất (19-21h)', 'Hợi (21-23h)'];
-        const goodHoursCount = 3 + (dayOfYear % 3);
-        const goodHours = [];
-        for (let i = 0; i < goodHoursCount; i++) {
-            goodHours.push(hours[(dayOfYear + i * 3) % 12]);
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+            signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         
-        // Select activities based on day
-        const goodActivitiesIndex = dayOfYear % this.goodActivities.length;
-        const badActivitiesIndex = (dayOfYear + 3) % this.badActivities.length;
+        return await response.json();
+    }
+    
+    showModalLoading() {
+        const modalBody = document.querySelector('#fengShuiModal .modal-body');
+        modalBody.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #6c757d;">
+                <i class="fas fa-spinner" style="font-size: 2rem; margin-bottom: 15px; animation: spin 1s linear infinite;"></i>
+                <p>Đang tra cứu thông tin lịch vạn sự...</p>
+            </div>
+        `;
+    }
+    
+    showModalError(message) {
+        const modalBody = document.querySelector('#fengShuiModal .modal-body');
+        modalBody.innerHTML = `
+            <div style="background: #f8d7da; color: #721c24; padding: 20px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                <strong>Lỗi:</strong> ${message}
+            </div>
+        `;
+    }
+    
+    displayModalResults(data) {
+        const modalBody = document.querySelector('#fengShuiModal .modal-body');
         
-        // Select direction
-        const goodDirection = this.directions[dayOfYear % this.directions.length];
+        // Parse data
+        const amLich = data.am_lich || {};
+        const lunarDate = amLich.ngay && amLich.thang ? `${amLich.ngay}/${amLich.thang}` : '--';
+        const canChiNgay = this.extractCanChi(data.sao_gio_can_chi_display) || '--';
+        const gioHoangDao = this.parseGioHoangDao(data.gio_hoang_dao) || '--';
+        const goodDirection = data.huong_xuat_hanh ? data.huong_xuat_hanh.replace(/;/g, ', ') : '--';
+        const conflictAge = this.cleanHtmlTags(data.tuoi_xung) || '--';
+        const season = data.tiet_khi_truoc || '--';
+        const dayStatus = this.cleanHtmlTags(data.hoang_dao) || this.cleanHtmlTags(data.luc_nham_don) || '--';
         
-        // Select lucky colors (2-3 colors)
-        const colorCount = 2 + (dayOfYear % 2);
-        const luckyColors = [];
-        for (let i = 0; i < colorCount; i++) {
-            luckyColors.push(this.colors[(dayOfYear + i * 2) % this.colors.length]);
+        // Get stars text
+        const goodStars = this.formatStarsText(data.sao_tot) || 'Không có thông tin';
+        const badStars = this.formatStarsText(data.sao_xau) || 'Không có thông tin';
+        
+        // Build modal HTML
+        modalBody.innerHTML = `
+            <div class="feng-shui-info">
+                <div class="lunar-info">
+                    <h4>📅 Thông tin âm lịch</h4>
+                    <p><strong>Ngày âm lịch:</strong> <span>${lunarDate}</span></p>
+                    <p><strong>Can Chi ngày:</strong> <span>${canChiNgay}</span></p>
+                    <p><strong>Trạng thái:</strong> <span style="color: #ff6b6b; font-weight: 700;">${dayStatus}</span></p>
+                    <p><strong>Giờ hoàng đạo:</strong> <span>${gioHoangDao}</span></p>
+                </div>
+                
+                <div class="feng-shui-details">
+                    <h4>🔮 Phong thủy trong ngày</h4>
+                    <div class="good-bad-section">
+                        <div class="good-section">
+                            <h5>⭐ Sao Tốt:</h5>
+                            <div class="stars-content">${goodStars}</div>
+                        </div>
+                        <div class="bad-section">
+                            <h5>💫 Sao Xấu:</h5>
+                            <div class="stars-content">${badStars}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="direction-info">
+                        <h5>🧭 Hướng xuất hành tốt:</h5>
+                        <p>${goodDirection}</p>
+                    </div>
+                    
+                    <div class="direction-info">
+                        <h5>🚫 Tuổi xung:</h5>
+                        <p>${conflictAge}</p>
+                    </div>
+                    
+                    <div class="direction-info">
+                        <h5>🌸 Tiết khí:</h5>
+                        <p>${season}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    formatStarsText(text) {
+        if (!text) return '';
+        
+        // Convert HTML tags to proper formatting
+        let formatted = text
+            .replace(/<b>/g, '<strong>')
+            .replace(/<\/b>/g, '</strong>')
+            .replace(/<i>/g, '<em>')
+            .replace(/<\/i>/g, '</em>')
+            .replace(/<\/br>/g, '<br>')
+            .replace(/\n/g, '<br>');
+        
+        return formatted;
+    }
+    
+    cleanHtmlTags(text) {
+        if (!text) return '';
+        return text.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+    }
+    
+    extractCanChi(gioData) {
+        if (!gioData) return null;
+        const firstKey = Object.keys(gioData)[0];
+        return firstKey ? this.cleanHtmlTags(gioData[firstKey]) : null;
+    }
+    
+    parseGioHoangDao(gioText) {
+        if (!gioText) return '';
+        const cleanText = this.cleanHtmlTags(gioText);
+        const hours = cleanText.split(',').map(h => h.trim()).filter(h => h);
+        return hours.join(', ');
+    }
+    
+    parseActivitiesFromStars(saoTot, saoXau) {
+        const goodActivities = [];
+        const badActivities = [];
+        
+        if (saoTot) {
+            const cleanSaoTot = this.cleanHtmlTags(saoTot);
+            
+            if (cleanSaoTot.includes('Tốt mọi việc')) {
+                goodActivities.push('Mọi việc đều thuận lợi');
+            }
+            if (cleanSaoTot.includes('cầu phúc') || cleanSaoTot.includes('tế tự')) {
+                goodActivities.push('Cầu nguyện, thờ cúng, lễ bái');
+            }
+            if (cleanSaoTot.includes('Hoàng Đạo')) {
+                goodActivities.push('Các việc quan trọng, khởi sự');
+            }
+            if (cleanSaoTot.includes('Thiên Đức') || cleanSaoTot.includes('Nguyệt Đức')) {
+                goodActivities.push('Cưới hỏi, ăn hỏi');
+                goodActivities.push('Khởi công xây dựng');
+            }
+            if (cleanSaoTot.includes('Thiên Ân')) {
+                goodActivities.push('Khai trương, kinh doanh');
+                goodActivities.push('Ký hợp đồng');
+            }
+            if (cleanSaoTot.includes('Thanh Long')) {
+                goodActivities.push('Du lịch, xuất hành');
+                goodActivities.push('Học tập, thi cử');
+            }
         }
         
-        // Select advice
-        const advice = this.advices[dayOfYear % this.advices.length];
+        if (saoXau) {
+            const cleanSaoXau = this.cleanHtmlTags(saoXau);
+            
+            if (cleanSaoXau.includes('Xấu mọi việc')) {
+                badActivities.push('Tránh các việc quan trọng');
+            }
+            if (cleanSaoXau.includes('Kị xây dựng') || cleanSaoXau.includes('Địa phá')) {
+                badActivities.push('Khởi công xây dựng, động thổ');
+            }
+            if (cleanSaoXau.includes('Kị xuất hành') || cleanSaoXau.includes('Ngũ Quỷ')) {
+                badActivities.push('Du lịch, xuất hành xa');
+            }
+            if (cleanSaoXau.includes('Kị giá thú') || cleanSaoXau.includes('Ly sàng') || cleanSaoXau.includes('Không phòng')) {
+                badActivities.push('Cưới hỏi, ăn hỏi, lễ thành hôn');
+            }
+            if (cleanSaoXau.includes('Kị khởi tạo') || cleanSaoXau.includes('Ngũ hư')) {
+                badActivities.push('Bắt đầu việc mới, khai trương');
+            }
+            if (cleanSaoXau.includes('Kị an táng') || cleanSaoXau.includes('mai táng xấu')) {
+                badActivities.push('Tang lễ, an táng');
+            }
+        }
         
         return {
-            lunarDate,
-            canChi,
-            goodHours: goodHours.join(', '),
-            goodActivities: this.goodActivities[goodActivitiesIndex],
-            badActivities: this.badActivities[badActivitiesIndex],
-            goodDirection,
-            luckyColors,
-            advice
+            good: goodActivities.length > 0 ? goodActivities : null,
+            bad: badActivities.length > 0 ? badActivities : null
         };
     }
+    
+    parseNhiThapBatTu(nhiThapBatTu, luanNhiThapBatTu) {
+        const goodActivities = [];
+        const badActivities = [];
+        
+        if (nhiThapBatTu) {
+            const text = this.cleanHtmlTags(nhiThapBatTu);
+            
+            if (text.includes('Tốt')) {
+                if (text.includes('mai táng xấu')) {
+                    goodActivities.push('Các việc tốt (trừ tang lễ)');
+                    badActivities.push('Tang lễ, mai táng');
+                } else {
+                    goodActivities.push('Các việc theo 28 sao tú đều tốt');
+                }
+            }
+            
+            if (text.includes('Xấu') || text.includes('Hung')) {
+                badActivities.push('Tránh các việc quan trọng theo 28 sao tú');
+            }
+        }
+        
+        if (luanNhiThapBatTu && luanNhiThapBatTu.title) {
+            const title = this.cleanHtmlTags(luanNhiThapBatTu.title);
+            
+            if (title.includes('Tốt')) {
+                if (title.includes('mai táng xấu') || title.includes('tang xấu')) {
+                    goodActivities.push('Mọi việc tốt (trừ tang lễ)');
+                    badActivities.push('Tang lễ, mai táng, việc tang');
+                } else {
+                    goodActivities.push('Mọi việc đều thuận lợi');
+                }
+            }
+            
+            if (title.includes('Xấu') || title.includes('Hung')) {
+                badActivities.push('Tránh mọi việc quan trọng');
+            }
+        }
+        
+        return {
+            good: goodActivities.length > 0 ? [...new Set(goodActivities)] : null,
+            bad: badActivities.length > 0 ? [...new Set(badActivities)] : null
+        };
+    }
+    
+    generateAdvice(data) {
+        let advice = '';
+        
+        const hoangDao = this.cleanHtmlTags(data.hoang_dao || '');
+        const lucNhamDon = this.cleanHtmlTags(data.luc_nham_don || '');
+        const thoiTiet = this.cleanHtmlTags(data.thoi_tiet || '');
+        
+        if (hoangDao.includes('Hoàng Đạo')) {
+            advice += 'Hôm nay là ngày Hoàng Đạo, rất tốt cho các việc quan trọng. ';
+        }
+        
+        if (lucNhamDon.includes('Cát')) {
+            advice += 'Ngày có nhiều may mắn và thuận lợi. ';
+        }
+        
+        if (thoiTiet) {
+            advice += `Thời tiết hôm nay: ${thoiTiet.replace('Mùa Đông', 'mùa đông')}. `;
+        }
+        
+        advice += 'Hãy tận dụng những giờ hoàng đạo để làm việc và tránh những việc không phù hợp trong ngày.';
+        
+        return advice || 'Hãy giữ tâm trạng tích cực và làm việc có kế hoạch trong ngày hôm nay.';
+    }
+    
+
 }
 
 // Global function to close modal
