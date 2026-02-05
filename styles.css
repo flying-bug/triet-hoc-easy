@@ -330,14 +330,15 @@ body {
     animation: scrollLoop 25s linear infinite;
     gap: 30px;
     width: max-content;
+    transform-origin: center;
 }
 
 @keyframes scrollLoop {
     0% {
-        transform: translateX(100vw) translateY(-50px);
+        transform: translateX(120vw) translateY(-200px) rotate(-3deg);
     }
     100% {
-        transform: translateX(-100%) translateY(50px);
+        transform: translateX(-120%) translateY(200px) rotate(-3deg);
     }
 }
 
@@ -350,12 +351,12 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
     flex-shrink: 0;
-    transform: skewY(-3deg);
+    transform: rotate(3deg) skewY(-3deg);
     border: 2px solid #FFD700;
 }
 
 .philosopher-item:hover {
-    transform: skewY(-3deg) translateY(-6px) scale(1.05);
+    transform: rotate(3deg) skewY(-3deg) translateY(-6px) scale(1.05);
     box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
     border-color: #FFA500;
 }
@@ -461,11 +462,11 @@ footer {
     .philosopher-item {
         min-width: 140px;
         padding: 12px 10px;
-        transform: skewY(-2deg);
+        transform: rotate(2deg) skewY(-2deg);
     }
 
     .philosopher-item:hover {
-        transform: skewY(-2deg) translateY(-4px) scale(1.03);
+        transform: rotate(2deg) skewY(-2deg) translateY(-4px) scale(1.03);
     }
 
     .philosopher-item img {
@@ -526,11 +527,11 @@ footer {
     .philosopher-item {
         min-width: 120px;
         padding: 10px 8px;
-        transform: skewY(-1.5deg);
+        transform: rotate(1.5deg) skewY(-1.5deg);
     }
 
     .philosopher-item:hover {
-        transform: skewY(-1.5deg) translateY(-3px) scale(1.02);
+        transform: rotate(1.5deg) skewY(-1.5deg) translateY(-3px) scale(1.02);
     }
 
     .philosopher-item img {
