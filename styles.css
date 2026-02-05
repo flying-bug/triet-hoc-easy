@@ -72,10 +72,30 @@ body {
 
 /* Hero Section */
 .hero {
-    background: #B22222;
+    background: linear-gradient(rgba(178, 34, 34, 0.3), rgba(178, 34, 34, 0.3)), url('images/trietgia/hinh-nen.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: white;
-    padding: 120px 0 100px 0;
+    padding: 270px 0 130px 0;
     text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -243,6 +263,142 @@ body {
     margin: 0 auto;
 }
 
+/* Philosopher Gallery Section */
+.philosopher-gallery {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+    padding: 40px 0;
+    overflow: hidden;
+    position: relative;
+    transform: rotate(-3deg);
+    margin: 60px 0 40px 0;
+    border-top: 5px solid #FFD700;
+    border-bottom: 5px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.ribbon-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(3deg) skewY(-3deg);
+    font-family: 'Times New Roman', serif;
+    color: rgba(255, 215, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-code {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    font-style: italic;
+}
+
+.instructor {
+    font-size: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 0.2rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.gallery-container {
+    transform: rotate(3deg);
+    position: relative;
+    z-index: 2;
+}
+
+.gallery-container h2 {
+    text-align: center;
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.scrolling-wrapper {
+    display: flex;
+    animation: scrollLoop 25s linear infinite;
+    gap: 30px;
+    width: max-content;
+}
+
+@keyframes scrollLoop {
+    0% {
+        transform: translateX(100vw) translateY(-50px);
+    }
+    100% {
+        transform: translateX(-100%) translateY(50px);
+    }
+}
+
+.philosopher-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    padding: 15px 12px;
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    transform: skewY(-3deg);
+    border: 2px solid #FFD700;
+}
+
+.philosopher-item:hover {
+    transform: skewY(-3deg) translateY(-6px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+    border-color: #FFA500;
+}
+
+.philosopher-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B22222;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+    transform: none;
+}
+
+.philosopher-item:hover img {
+    transform: scale(1.1);
+    border-color: #FFD700;
+}
+
+.philosopher-item h4 {
+    color: #2c3e50;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    transform: skewY(3deg);
+    font-style: italic;
+}
+
+.philosopher-item p {
+    color: #7f8c8d;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0;
+    transform: skewY(3deg);
+    font-style: italic;
+}
+
+/* Pause animation on hover */
+.philosopher-gallery:hover .scrolling-wrapper {
+    animation-play-state: paused;
+}
+
 /* Footer */
 footer {
     background: #8B4513;
@@ -273,5 +429,337 @@ footer {
     .topic-content {
         margin: 1rem;
         padding: 2rem;
+    }
+
+    /* Philosopher Gallery Responsive */
+    .philosopher-gallery {
+        padding: 30px 0;
+        transform: rotate(-2deg);
+        margin: 40px 0 30px 0;
+        border-width: 3px;
+    }
+
+    .ribbon-text {
+        transform: translate(-50%, -50%) rotate(2deg) skewY(-2deg);
+    }
+
+    .course-code {
+        font-size: 3rem;
+        letter-spacing: 0.3rem;
+    }
+
+    .instructor {
+        font-size: 1.2rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .gallery-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .philosopher-item {
+        min-width: 140px;
+        padding: 12px 10px;
+        transform: skewY(-2deg);
+    }
+
+    .philosopher-item:hover {
+        transform: skewY(-2deg) translateY(-4px) scale(1.03);
+    }
+
+    .philosopher-item img {
+        width: 60px;
+        height: 60px;
+        transform: none;
+    }
+
+    .philosopher-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .philosopher-item h4 {
+        transform: skewY(2deg);
+        font-style: italic;
+    }
+
+    .philosopher-item p {
+        transform: skewY(2deg);
+        font-style: italic;
+    }
+
+    .philosopher-item h4 {
+        font-size: 0.9rem;
+    }
+
+    .philosopher-item p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .philosopher-gallery {
+        padding: 25px 0;
+        transform: rotate(-1deg);
+        margin: 30px 0 20px 0;
+        border-width: 2px;
+    }
+
+    .ribbon-text {
+        transform: translate(-50%, -50%) rotate(1deg) skewY(-1deg);
+    }
+
+    .course-code {
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .instructor {
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .gallery-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .philosopher-item {
+        min-width: 120px;
+        padding: 10px 8px;
+        transform: skewY(-1.5deg);
+    }
+
+    .philosopher-item:hover {
+        transform: skewY(-1.5deg) translateY(-3px) scale(1.02);
+    }
+
+    .philosopher-item img {
+        width: 50px;
+        height: 50px;
+        transform: none;
+    }
+
+    .philosopher-item h4 {
+        font-size: 0.85rem;
+        transform: skewY(1.5deg);
+        font-style: italic;
+    }
+
+    .philosopher-item p {
+        transform: skewY(1.5deg);
+        font-style: italic;
+    }
+
+    .scrolling-wrapper {
+        gap: 20px;
+    }
+}
+/* Team Members Section in Footer */
+.team-section {
+    padding: 40px 0 20px 0;
+    border-top: 2px solid rgba(178, 34, 34, 0.1);
+    margin-top: 40px;
+}
+
+.team-section h3 {
+    text-align: center;
+    color: #B22222;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.member-card {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    flex: 0 0 200px;
+    min-width: 200px;
+}
+
+.center-member {
+    transform: scale(1.1);
+    z-index: 2;
+    position: relative;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(178, 34, 34, 0.2);
+    border-color: rgba(178, 34, 34, 0.3);
+}
+
+.member-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #B22222;
+    box-shadow: 0 8px 20px rgba(178, 34, 34, 0.3);
+    position: relative;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-image img {
+    transform: scale(1.1);
+}
+
+.member-info h4 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.member-info p {
+    color: #7f8c8d;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(178, 34, 34, 0.1);
+}
+
+.footer-bottom p {
+    color: #7f8c8d;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Responsive Design for Team Section */
+@media (max-width: 768px) {
+    .team-section h3 {
+        font-size: 1.8rem;
+    }
+    
+    .team-grid {
+        gap: 20px;
+    }
+    
+    .member-card {
+        padding: 20px;
+        flex: 0 0 180px;
+        min-width: 180px;
+    }
+    
+    .center-member {
+        transform: scale(1.05);
+    }
+    
+    .member-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .member-info h4 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Placeholder Member Styling */
+.member-placeholder {
+    position: relative;
+}
+
+.member-placeholder img {
+    opacity: 0;
+}
+
+.member-placeholder.no-image img,
+.member-placeholder img[style*="display: none"] + .placeholder-icon {
+    display: block;
+}
+
+.placeholder-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+    border-radius: 50%;
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.member-placeholder.no-image .placeholder-icon {
+    display: flex;
+}
+
+/* Font Awesome fallback if not loaded */
+.placeholder-icon::before {
+    content: "👤";
+    font-size: 3rem;
+}
+
+.placeholder-icon .fas {
+    font-size: 3rem;
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .member-card {
+        padding: 15px;
+        flex: none;
+        width: 200px;
+    }
+    
+    .center-member {
+        transform: scale(1.1);
+        order: -1;
+    }
+    
+    .member-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .member-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    .member-info p {
+        font-size: 0.9rem;
+    }
+    
+    .placeholder-icon {
+        font-size: 2rem;
+    }
+    
+    .placeholder-icon::before {
+        font-size: 2rem;
     }
 }

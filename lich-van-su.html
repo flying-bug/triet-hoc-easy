@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Vạn Sự - Xem Ngày Tốt Xấu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .date-selector {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .date-input {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .lookup-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lookup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-section {
+            display: none;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .info-value {
+            color: #ff6b6b;
+            font-weight: 700;
+            text-align: right;
+            max-width: 60%;
+            word-wrap: break-word;
+        }
+
+        .feng-shui-section {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(238, 90, 36, 0.1) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .feng-shui-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .good-activities {
+            border-left: 5px solid #28a745;
+        }
+
+        .bad-activities {
+            border-left: 5px solid #dc3545;
+        }
+
+        .activity-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .good-activities .activity-title {
+            color: #28a745;
+        }
+
+        .bad-activities .activity-title {
+            color: #dc3545;
+        }
+
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.4;
+        }
+
+        .good-activities .activity-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .bad-activities .activity-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #dc3545;
+        }
+
+        .current-date-display {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .stars-content {
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+
+            .date-selector {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .date-input {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-calendar-check"></i> Lịch Vạn Sự</h1>
+            <p>Xem ngày tốt xấu theo âm lịch Việt Nam</p>
+            
+            <div class="date-selector">
+                <input type="number" id="dayInput" class="date-input" placeholder="Ngày" min="1" max="31" value="5">
+                <input type="number" id="monthInput" class="date-input" placeholder="Tháng" min="1" max="12" value="2">
+                <input type="number" id="yearInput" class="date-input" placeholder="Năm" min="1900" max="2100" value="2026">
+                <input type="time" id="timeInput" class="date-input" value="06:10">
+                <button class="lookup-btn" onclick="lookupDate()">
+                    <i class="fas fa-search"></i> Xem Ngày
+                </button>
+            </div>
+
+            <div class="current-date-display" id="currentDateDisplay">
+                Ngày hiện tại: Thứ 5, 5/2/2026 - 6:10 AM
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="loadingSection" class="loading" style="display: none;">
+                <i class="fas fa-spinner"></i>
+                <p>Đang tra cứu thông tin lịch vạn sự...</p>
+            </div>
+
+            <div id="errorSection" class="error" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Lỗi:</strong> <span id="errorMessage">Không thể kết nối đến API</span>
+            </div>
+
+            <div id="resultSection" class="result-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-moon"></i> Thông Tin Âm Lịch</h3>
+                        <div class="info-item">
+                            <span class="info-label">Ngày âm lịch:</span>
+                            <span class="info-value" id="lunarDate">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Can Chi ngày:</span>
+                            <span class="info-value" id="canChiDay">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Can Chi tháng:</span>
+                            <span class="info-value" id="canChiMonth">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Can Chi năm:</span>
+                            <span class="info-value" id="canChiYear">--</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-star"></i> Sao Tốt</h3>
+                        <div class="stars-content" id="goodStars">--</div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-star-half-alt"></i> Sao Xấu</h3>
+                        <div class="stars-content" id="badStars">--</div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Giờ Hoàng Đạo</h3>
+                        <div class="info-item">
+                            <span class="info-label">Giờ tốt:</span>
+                            <span class="info-value" id="goodHours">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Trạng thái:</span>
+                            <span class="info-value" id="dayStatus">--</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-compass"></i> Hướng Và Tuổi</h3>
+                        <div class="info-item">
+                            <span class="info-label">Hướng xuất hành:</span>
+                            <span class="info-value" id="goodDirection">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tuổi xung:</span>
+                            <span class="info-value" id="conflictAge">--</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-cloud-sun"></i> Thời Tiết & Tiết Khí</h3>
+                        <div class="info-item">
+                            <span class="info-label">Thời tiết:</span>
+                            <span class="info-value" id="weather">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tiết khí:</span>
+                            <span class="info-value" id="season">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feng-shui-section">
+                    <h2><i class="fas fa-yin-yang"></i> Việc Nên Làm & Không Nên Làm</h2>
+                    
+                    <div class="activities-grid">
+                        <div class="activity-card good-activities">
+                            <div class="activity-title">
+                                <i class="fas fa-thumbs-up"></i> Việc Nên Làm
+                            </div>
+                            <ul class="activity-list" id="goodActivities">
+                                <!-- Sẽ được cập nhật từ API -->
+                            </ul>
+                        </div>
+
+                        <div class="activity-card bad-activities">
+                            <div class="activity-title">
+                                <i class="fas fa-thumbs-down"></i> Việc Không Nên Làm
+                            </div>
+                            <ul class="activity-list" id="badActivities">
+                                <!-- Sẽ được cập nhật từ API -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="margin-top: 25px;">
+                        <h3><i class="fas fa-lightbulb"></i> Lời Khuyên Trong Ngày</h3>
+                        <p id="dailyAdvice" style="color: #2c3e50; line-height: 1.6; font-size: 1.1rem; margin-top: 10px;">
+                            <!-- Sẽ được cập nhật từ API -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_URL = 'https://tuvi.vienaoc.vn/api/v0/lichvansu';
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentDateDisplay();
+            // Không tự động lookup khi load trang
+        });
+
+        // Update current date display
+        function updateCurrentDateDisplay() {
+            const day = document.getElementById('dayInput').value;
+            const month = document.getElementById('monthInput').value;
+            const year = document.getElementById('yearInput').value;
+            const time = document.getElementById('timeInput').value;
+            
+            const date = new Date(year, month - 1, day);
+            const dayNames = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+            const dayName = dayNames[date.getDay()];
+            
+            document.getElementById('currentDateDisplay').textContent = 
+                `Ngày tra cứu: ${dayName}, ${day}/${month}/${year} - ${time}`;
+        }
+
+        // Main lookup function
+        async function lookupDate() {
+            const day = parseInt(document.getElementById('dayInput').value);
+            const month = parseInt(document.getElementById('monthInput').value);
+            const year = parseInt(document.getElementById('yearInput').value);
+            const time = document.getElementById('timeInput').value;
+            
+            // Validate input
+            if (!day || !month || !year || day < 1 || day > 31 || month < 1 || month > 12) {
+                showError('Vui lòng nhập ngày tháng năm hợp lệ');
+                return;
+            }
+
+            // Parse time
+            const [hours, minutes] = time.split(':').map(Number);
+            
+            // Update display
+            updateCurrentDateDisplay();
+            
+            // Show loading
+            showLoading();
+            
+            try {
+                // Prepare API request
+                const requestData = {
+                    gio_duong: hours,
+                    phut_duong: minutes,
+                    giay_duong: 0,
+                    ingay_duong: day,
+                    ithang_duong: month,
+                    inam_duong: year,
+                    timezone: 7
+                };
+
+                console.log('🚀 Gửi request đến API:', requestData);
+
+                // Call API with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                console.log('📥 Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ API Response Data:', data);
+
+                // Process and display results
+                displayResults(data);
+                
+            } catch (error) {
+                console.error('❌ Lookup Error:', error);
+                
+                let errorMessage = 'Không thể kết nối đến API';
+                
+                if (error.name === 'AbortError') {
+                    errorMessage = 'Timeout: API phản hồi quá chậm';
+                } else if (error.message.includes('CORS')) {
+                    errorMessage = 'Lỗi CORS: Cần chạy qua HTTP server';
+                } else if (error.message.includes('Failed to fetch')) {
+                    errorMessage = 'Lỗi mạng: Kiểm tra kết nối internet';
+                } else {
+                    errorMessage = error.message;
+                }
+                
+                // Show error only, no fallback data
+                showError(errorMessage);
+            }
+        }
+
+        // Display API results - Updated for actual API response structure
+        function displayResults(data) {
+            hideLoading();
+            
+            console.log('Processing API data:', data);
+            
+            // Parse lunar calendar info
+            const amLich = data.am_lich || {};
+            const duongLich = data.duong_lich || {};
+            
+            // Update lunar info
+            document.getElementById('lunarDate').textContent = 
+                amLich.ngay && amLich.thang ? `${amLich.ngay}/${amLich.thang}` : '--';
+            
+            // Extract Can Chi from various sources
+            const canChiNgay = extractCanChi(data.sao_gio_can_chi_display) || '--';
+            document.getElementById('canChiDay').textContent = canChiNgay;
+            
+            // Can Chi month and year from bat_tu or other sources
+            const batTu = data.bat_tu || [];
+            document.getElementById('canChiMonth').textContent = 
+                batTu.length > 1 ? cleanHtmlTags(batTu[1]) : '--';
+            document.getElementById('canChiYear').textContent = 
+                batTu.length > 0 ? cleanHtmlTags(batTu[0]) : '--';
+            
+            // Update stars info
+            document.getElementById('goodStars').innerHTML = 
+                formatStarsText(data.sao_tot) || '--';
+            
+            document.getElementById('badStars').innerHTML = 
+                formatStarsText(data.sao_xau) || '--';
+            
+            // Day status from hoang_dao
+            document.getElementById('dayStatus').textContent = 
+                cleanHtmlTags(data.hoang_dao) || cleanHtmlTags(data.luc_nham_don) || '--';
+            
+            // Update time info - parse gio_hoang_dao
+            const gioHoangDao = parseGioHoangDao(data.gio_hoang_dao);
+            document.getElementById('goodHours').textContent = gioHoangDao || '--';
+            
+            // Update direction info
+            document.getElementById('goodDirection').textContent = 
+                data.huong_xuat_hanh ? data.huong_xuat_hanh.replace(/;/g, ', ') : '--';
+            
+            document.getElementById('conflictAge').innerHTML = 
+                formatConflictAge(data.tuoi_xung) || '--';
+            
+            // Update weather and season
+            document.getElementById('weather').innerHTML = 
+                formatWeatherText(data.thoi_tiet) || '--';
+            document.getElementById('season').textContent = 
+                data.tiet_khi_truoc || '--';
+            
+            // Parse activities from sao_tot and sao_xau
+            const activities = parseActivitiesFromStars(data.sao_tot, data.sao_xau);
+            
+            // Add activities from nhi_thap_bat_tu (28 stars)
+            const nhiThapBatTu = parseNhiThapBatTu(data.nhi_thap_bat_tu, data.luan_nhi_thap_bat_tu);
+            if (nhiThapBatTu.good) {
+                activities.good = activities.good ? [...activities.good, ...nhiThapBatTu.good] : nhiThapBatTu.good;
+            }
+            if (nhiThapBatTu.bad) {
+                activities.bad = activities.bad ? [...activities.bad, ...nhiThapBatTu.bad] : nhiThapBatTu.bad;
+            }
+            
+            updateActivities(activities.good, activities.bad);
+            
+            // Update advice based on day status and weather
+            const advice = generateAdvice(data);
+            document.getElementById('dailyAdvice').textContent = advice;
+            
+            // Show results
+            document.getElementById('resultSection').style.display = 'block';
+        }
+
+        // Helper function to clean HTML tags
+        function cleanHtmlTags(text) {
+            if (!text) return '';
+            return text.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+        }
+
+        // Format stars text with proper HTML
+        function formatStarsText(text) {
+            if (!text) return '';
+            
+            // Convert <b> and <i> tags to proper formatting
+            let formatted = text
+                .replace(/<b>/g, '<strong>')
+                .replace(/<\/b>/g, '</strong>')
+                .replace(/<i>/g, '<em>')
+                .replace(/<\/i>/g, '</em>')
+                .replace(/<\/br>/g, '<br>')
+                .replace(/\n/g, '<br>');
+            
+            return formatted;
+        }
+
+        // Format weather text
+        function formatWeatherText(text) {
+            if (!text) return '';
+            return text.replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '');
+        }
+
+        // Format conflict age
+        function formatConflictAge(text) {
+            if (!text) return '';
+            return text.replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '').replace(/,/g, ', ');
+        }
+
+        // Extract Can Chi from gio data
+        function extractCanChi(gioData) {
+            if (!gioData) return null;
+            
+            // Get current hour Can Chi (assuming 6:10 AM = hour 6)
+            const currentHour = parseInt(document.getElementById('timeInput').value.split(':')[0]);
+            const hourIndex = Math.floor(currentHour / 2) * 2; // Convert to traditional hour system
+            
+            if (gioData[hourIndex]) {
+                return cleanHtmlTags(gioData[hourIndex]);
+            }
+            
+            // Fallback to first available
+            const firstKey = Object.keys(gioData)[0];
+            return firstKey ? cleanHtmlTags(gioData[firstKey]) : null;
+        }
+
+        // Parse gio hoang dao for good hours
+        function parseGioHoangDao(gioText) {
+            if (!gioText) return '';
+            
+            const cleanText = cleanHtmlTags(gioText);
+            const hours = cleanText.split(',').map(h => h.trim()).filter(h => h);
+            
+            return hours.join(', ');
+        }
+
+        // Parse activities from 28 stars (nhi_thap_bat_tu)
+        function parseNhiThapBatTu(nhiThapBatTu, luanNhiThapBatTu) {
+            const goodActivities = [];
+            const badActivities = [];
+            
+            // Parse from nhi_thap_bat_tu string
+            if (nhiThapBatTu) {
+                const text = cleanHtmlTags(nhiThapBatTu);
+                console.log('28 sao tú:', text);
+                
+                if (text.includes('Tốt')) {
+                    if (text.includes('mai táng xấu')) {
+                        goodActivities.push('Các việc tốt (trừ tang lễ)');
+                        badActivities.push('Tang lễ, mai táng');
+                    } else {
+                        goodActivities.push('Các việc theo 28 sao tú đều tốt');
+                    }
+                }
+                
+                if (text.includes('Xấu') || text.includes('Hung')) {
+                    badActivities.push('Tránh các việc quan trọng theo 28 sao tú');
+                }
+            }
+            
+            // Parse from luan_nhi_thap_bat_tu object
+            if (luanNhiThapBatTu && luanNhiThapBatTu.title) {
+                const title = cleanHtmlTags(luanNhiThapBatTu.title);
+                console.log('Luận 28 sao tú:', title);
+                
+                if (title.includes('Tốt')) {
+                    if (title.includes('mai táng xấu') || title.includes('tang xấu')) {
+                        goodActivities.push('Mọi việc tốt (trừ tang lễ)');
+                        badActivities.push('Tang lễ, mai táng, việc tang');
+                    } else {
+                        goodActivities.push('Mọi việc đều thuận lợi');
+                    }
+                }
+                
+                if (title.includes('Xấu') || title.includes('Hung')) {
+                    badActivities.push('Tránh mọi việc quan trọng');
+                }
+                
+                // Specific star interpretations
+                if (title.includes('Giao Long')) {
+                    goodActivities.push('Giao dịch, hợp tác kinh doanh');
+                }
+                if (title.includes('Tiết Lập')) {
+                    goodActivities.push('Bắt đầu việc mới theo tiết khí');
+                }
+            }
+            
+            return {
+                good: goodActivities.length > 0 ? [...new Set(goodActivities)] : null,
+                bad: badActivities.length > 0 ? [...new Set(badActivities)] : null
+            };
+        }
+
+        // Parse activities from star descriptions - Enhanced version
+        function parseActivitiesFromStars(saoTot, saoXau) {
+            const goodActivities = [];
+            const badActivities = [];
+            
+            if (saoTot) {
+                const cleanSaoTot = cleanHtmlTags(saoTot);
+                console.log('Sao tốt:', cleanSaoTot);
+                
+                // Parse specific activities from sao_tot
+                if (cleanSaoTot.includes('Tốt mọi việc')) {
+                    goodActivities.push('Mọi việc đều thuận lợi');
+                }
+                if (cleanSaoTot.includes('cầu phúc') || cleanSaoTot.includes('tế tự')) {
+                    goodActivities.push('Cầu nguyện, thờ cúng, lễ bái');
+                }
+                if (cleanSaoTot.includes('Hoàng Đạo')) {
+                    goodActivities.push('Các việc quan trọng, khởi sự');
+                }
+                if (cleanSaoTot.includes('Thiên Đức') || cleanSaoTot.includes('Nguyệt Đức')) {
+                    goodActivities.push('Cưới hỏi, ăn hỏi');
+                    goodActivities.push('Khởi công xây dựng');
+                }
+                if (cleanSaoTot.includes('Thiên Ân')) {
+                    goodActivities.push('Khai trương, kinh doanh');
+                    goodActivities.push('Ký hợp đồng');
+                }
+                if (cleanSaoTot.includes('Thanh Long')) {
+                    goodActivities.push('Du lịch, xuất hành');
+                    goodActivities.push('Học tập, thi cử');
+                }
+            }
+            
+            if (saoXau) {
+                const cleanSaoXau = cleanHtmlTags(saoXau);
+                console.log('Sao xấu:', cleanSaoXau);
+                
+                // Parse specific restrictions from sao_xau
+                if (cleanSaoXau.includes('Xấu mọi việc')) {
+                    badActivities.push('Tránh các việc quan trọng');
+                }
+                if (cleanSaoXau.includes('Kị xây dựng') || cleanSaoXau.includes('Địa phá')) {
+                    badActivities.push('Khởi công xây dựng, động thổ');
+                }
+                if (cleanSaoXau.includes('Kị xuất hành') || cleanSaoXau.includes('Ngũ Quỷ')) {
+                    badActivities.push('Du lịch, xuất hành xa');
+                }
+                if (cleanSaoXau.includes('Kị giá thú') || cleanSaoXau.includes('Ly sàng') || cleanSaoXau.includes('Không phòng')) {
+                    badActivities.push('Cưới hỏi, ăn hỏi, lễ thành hôn');
+                }
+                if (cleanSaoXau.includes('Kị khởi tạo') || cleanSaoXau.includes('Ngũ hư')) {
+                    badActivities.push('Bắt đầu việc mới, khai trương');
+                }
+                if (cleanSaoXau.includes('Kị an táng') || cleanSaoXau.includes('mai táng xấu')) {
+                    badActivities.push('Tang lễ, an táng');
+                }
+                if (cleanSaoXau.includes('Tam nương')) {
+                    badActivities.push('Các việc gia đình (theo dân gian)');
+                }
+                if (cleanSaoXau.includes('Thiên Cương') || cleanSaoXau.includes('Diệt Môn')) {
+                    badActivities.push('Ký hợp đồng quan trọng');
+                }
+                if (cleanSaoXau.includes('Nguyệt Hình')) {
+                    badActivities.push('Phẫu thuật, can thiệp y tế');
+                }
+            }
+            
+            return {
+                good: goodActivities.length > 0 ? goodActivities : null,
+                bad: badActivities.length > 0 ? badActivities : null
+            };
+        }
+
+        // Generate advice based on API data
+        function generateAdvice(data) {
+            let advice = '';
+            
+            const hoangDao = cleanHtmlTags(data.hoang_dao || '');
+            const lucNhamDon = cleanHtmlTags(data.luc_nham_don || '');
+            const thoiTiet = cleanHtmlTags(data.thoi_tiet || '');
+            
+            if (hoangDao.includes('Hoàng Đạo')) {
+                advice += 'Hôm nay là ngày Hoàng Đạo, rất tốt cho các việc quan trọng. ';
+            }
+            
+            if (lucNhamDon.includes('Cát')) {
+                advice += 'Ngày có nhiều may mắn và thuận lợi. ';
+            }
+            
+            if (thoiTiet) {
+                advice += `Thời tiết hôm nay: ${thoiTiet.replace('Mùa Đông', 'mùa đông')}. `;
+            }
+            
+            advice += 'Hãy tận dụng những giờ hoàng đạo để làm việc và tránh những việc không phù hợp trong ngày.';
+            
+            return advice || 'Hãy giữ tâm trạng tích cực và làm việc có kế hoạch trong ngày hôm nay.';
+        }
+
+        // Update activities lists
+        function updateActivities(goodList, badList) {
+            const goodActivitiesEl = document.getElementById('goodActivities');
+            const badActivitiesEl = document.getElementById('badActivities');
+            
+            // Only use API data, no defaults
+            if (goodList && goodList.length > 0) {
+                goodActivitiesEl.innerHTML = goodList.slice(0, 8).map(activity => 
+                    `<li>${activity}</li>`
+                ).join('');
+            } else {
+                goodActivitiesEl.innerHTML = '<li>Không có thông tin</li>';
+            }
+            
+            if (badList && badList.length > 0) {
+                badActivitiesEl.innerHTML = badList.slice(0, 8).map(activity => 
+                    `<li>${activity}</li>`
+                ).join('');
+            } else {
+                badActivitiesEl.innerHTML = '<li>Không có thông tin</li>';
+            }
+        }
+
+        // UI Helper functions
+        function showLoading() {
+            document.getElementById('loadingSection').style.display = 'block';
+            document.getElementById('errorSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSection').style.display = 'none';
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorSection').style.display = 'block';
+            document.getElementById('loadingSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'none';
+        }
+
+        // Auto-update date display when inputs change
+        document.getElementById('dayInput').addEventListener('change', updateCurrentDateDisplay);
+        document.getElementById('monthInput').addEventListener('change', updateCurrentDateDisplay);
+        document.getElementById('yearInput').addEventListener('change', updateCurrentDateDisplay);
+        document.getElementById('timeInput').addEventListener('change', updateCurrentDateDisplay);
+
+        // Enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                lookupDate();
+            }
+        });
+    </script>
+</body>
+</html>

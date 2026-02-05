@@ -17,52 +17,112 @@ class PhilosophyCalendar {
         
         this.philosophers = [
             {
+                name: 'Socrates',
+                nameVi: 'Socrates',
+                years: '470 - 399 TCN',
+                image: 'images/trietgia/socrates_bust.png',
+                quote: 'Tôi chỉ biết một điều là tôi không biết gì cả.',
+                description: 'Triết gia cổ đại Hy Lạp, cha đẻ của triết học phương Tây',
+                month: 0
+            },
+            {
+                name: 'Plato',
+                nameVi: 'Plato',
+                years: '428 - 348 TCN',
+                image: 'images/trietgia/plato_bust.png',
+                quote: 'Sự khôn ngoan bắt đầu từ việc tự biết mình.',
+                description: 'Học trò của Socrates, người sáng lập Học viện Athens',
+                month: 1
+            },
+            {
+                name: 'Confucius',
+                nameVi: 'Khổng Tử',
+                years: '551 - 479 TCN',
+                image: 'images/trietgia/confucius_portrait.png',
+                quote: 'Học mà không nghĩ thì vô ích, nghĩ mà không học thì nguy hiểm.',
+                description: 'Triết gia và nhà giáo dục vĩ đại của Trung Hoa',
+                month: 2
+            },
+            {
+                name: 'Nietzsche',
+                nameVi: 'Friedrich Nietzsche',
+                years: '1844 - 1900',
+                image: 'images/trietgia/nietzsche_portrait.png',
+                quote: 'Cái gì không giết chết ta sẽ làm ta mạnh mẽ hơn.',
+                description: 'Triết gia Đức, người đặt nền móng cho triết học hiện đại',
+                month: 3
+            },
+            {
+                name: 'Simone de Beauvoir',
+                nameVi: 'Simone de Beauvoir',
+                years: '1908 - 1986',
+                image: 'images/trietgia/beauvoir_portrait.png',
+                quote: 'Người ta không sinh ra là phụ nữ, mà trở thành phụ nữ.',
+                description: 'Triết gia nữ quyền và nhà văn hiện sinh Pháp',
+                month: 4
+            },
+            {
+                name: 'Albert Camus',
+                nameVi: 'Albert Camus',
+                years: '1913 - 1960',
+                image: 'images/trietgia/camus_portrait.png',
+                quote: 'Trong trái tim mùa đông, tôi cuối cùng đã học được rằng trong tôi có một mùa hè bất khả chiến bại.',
+                description: 'Triết gia hiện sinh và nhà văn đoạt giải Nobel',
+                month: 5
+            },
+            {
+                name: 'Michel Foucault',
+                nameVi: 'Michel Foucault',
+                years: '1926 - 1984',
+                image: 'images/trietgia/foucault_portrait.png',
+                quote: 'Quyền lực không phải là cái gì đó được sở hữu, mà là cái gì đó được thực thi.',
+                description: 'Triết gia hậu cấu trúc và sử gia tư tưởng Pháp',
+                month: 6
+            },
+            {
+                name: 'Hannah Arendt',
+                nameVi: 'Hannah Arendt',
+                years: '1906 - 1975',
+                image: 'images/trietgia/arendt_portrait.png',
+                quote: 'Quyền lực tương ứng với khả năng không chỉ hành động mà còn hành động cùng nhau.',
+                description: 'Triết gia chính trị và lý thuyết gia Do Thái-Mỹ',
+                month: 7
+            },
+            {
                 name: 'Karl Marx',
                 nameVi: 'Karl Marx',
                 years: '1818 - 1883',
-                image: 'images/marx.jpg',
+                image: 'images/trietgia/socrates_bust.png', // Fallback image
                 quote: 'Các triết gia chỉ giải thích thế giới theo nhiều cách khác nhau, vấn đề là thay đổi nó.',
-                month: 4 // May - birth month
+                description: 'Triết gia, kinh tế học gia và nhà cách mạng Đức',
+                month: 8
             },
             {
                 name: 'Friedrich Engels',
-                nameVi: 'Friedrich Engels', 
+                nameVi: 'Friedrich Engels',
                 years: '1820 - 1895',
-                image: 'images/engels.jpg',
+                image: 'images/trietgia/plato_bust.png', // Fallback image
                 quote: 'Kiến thức là khoa học về những quy luật chung nhất của tự nhiên, xã hội và tư duy.',
-                month: 10 // November - birth month
+                description: 'Triết gia và nhà lý thuyết cách mạng Đức',
+                month: 9
             },
             {
                 name: 'Vladimir Lenin',
                 nameVi: 'Vladimir Lenin',
-                years: '1870 - 1924', 
-                image: 'images/lenin.jpg',
+                years: '1870 - 1924',
+                image: 'images/trietgia/confucius_portrait.png', // Fallback image
                 quote: 'Không có lý luận cách mạng thì không có phong trào cách mạng.',
-                month: 3 // April - birth month
+                description: 'Nhà cách mạng và lãnh tụ chính trị Nga',
+                month: 10
             },
             {
                 name: 'Hồ Chí Minh',
                 nameVi: 'Hồ Chí Minh',
                 years: '1890 - 1969',
-                image: 'images/hochiminh.jpg', 
+                image: 'images/trietgia/nietzsche_portrait.png', // Fallback image
                 quote: 'Không có gì quý hơn độc lập tự do.',
-                month: 4 // May - birth month
-            },
-            {
-                name: 'Georg Hegel',
-                nameVi: 'Georg Hegel',
-                years: '1770 - 1831',
-                image: 'images/hegel.jpg',
-                quote: 'Cái thực tế là cái hợp lý, và cái hợp lý là cái thực tế.',
-                month: 7 // August - birth month
-            },
-            {
-                name: 'Ludwig Feuerbach',
-                nameVi: 'Ludwig Feuerbach', 
-                years: '1804 - 1872',
-                image: 'images/feuerbach.jpg',
-                quote: 'Con người là cái mà con người ăn.',
-                month: 6 // July - birth month
+                description: 'Lãnh tụ cách mạng và Chủ tịch nước Việt Nam',
+                month: 11
             }
         ];
         
@@ -283,12 +343,20 @@ class PhilosophyCalendar {
         
         document.getElementById('philosopherName').textContent = philosopher.nameVi;
         document.getElementById('philosopherYears').textContent = philosopher.years;
-        document.getElementById('quoteText').textContent = philosopher.quote;
+        document.getElementById('philosopherDescription').textContent = philosopher.description;
+        document.getElementById('quoteText').textContent = `"${philosopher.quote}"`;
         document.getElementById('quoteAuthor').textContent = `— ${philosopher.nameVi}`;
         
         const imageElement = document.getElementById('philosopherImage');
         imageElement.src = philosopher.image;
         imageElement.alt = philosopher.nameVi;
+        
+        // Add fade effect
+        const philosopherSection = document.querySelector('.philosopher-section');
+        philosopherSection.style.opacity = '0';
+        setTimeout(() => {
+            philosopherSection.style.opacity = '1';
+        }, 100);
     }
     
     loadEvents() {
