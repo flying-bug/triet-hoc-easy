@@ -613,7 +613,7 @@ footer {
 
 .team-section h3 {
     text-align: center;
-    color: #B22222;
+    color: #FFF8DC !important;
     font-size: 2rem;
     margin-bottom: 30px;
     font-weight: 700;
@@ -685,6 +685,57 @@ footer {
 .member-info p {
     color: #7f8c8d;
     font-size: 1rem;
+    font-weight: 500;
+}
+
+/* References Section */
+.references-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.references-section h3 {
+    color: #FFF8DC;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.reference-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.reference-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 248, 220, 0.15);
+    color: #FFF8DC;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 248, 220, 0.3);
+}
+
+.reference-link:hover {
+    background: rgba(255, 248, 220, 0.25);
+    border-color: #FFD700;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #FFD700;
+}
+
+.reference-link i {
+    font-size: 1.2rem;
+}
+
+.reference-link span {
     font-weight: 500;
 }
 
