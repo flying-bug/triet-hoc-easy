@@ -92,7 +92,7 @@ class PhilosophyCalendar {
                 name: 'Karl Marx',
                 nameVi: 'Karl Marx',
                 years: '1818 - 1883',
-                image: 'images/trietgia/socrates_bust.png', // Fallback image
+                image: '', // Chưa có ảnh
                 quote: 'Các triết gia chỉ giải thích thế giới theo nhiều cách khác nhau, vấn đề là thay đổi nó.',
                 description: 'Triết gia, kinh tế học gia và nhà cách mạng Đức',
                 month: 8
@@ -101,7 +101,7 @@ class PhilosophyCalendar {
                 name: 'Friedrich Engels',
                 nameVi: 'Friedrich Engels',
                 years: '1820 - 1895',
-                image: 'images/trietgia/plato_bust.png', // Fallback image
+                image: '', // Chưa có ảnh
                 quote: 'Kiến thức là khoa học về những quy luật chung nhất của tự nhiên, xã hội và tư duy.',
                 description: 'Triết gia và nhà lý thuyết cách mạng Đức',
                 month: 9
@@ -110,7 +110,7 @@ class PhilosophyCalendar {
                 name: 'Vladimir Lenin',
                 nameVi: 'Vladimir Lenin',
                 years: '1870 - 1924',
-                image: 'images/trietgia/confucius_portrait.png', // Fallback image
+                image: '', // Chưa có ảnh
                 quote: 'Không có lý luận cách mạng thì không có phong trào cách mạng.',
                 description: 'Nhà cách mạng và lãnh tụ chính trị Nga',
                 month: 10
@@ -119,7 +119,7 @@ class PhilosophyCalendar {
                 name: 'Hồ Chí Minh',
                 nameVi: 'Hồ Chí Minh',
                 years: '1890 - 1969',
-                image: 'images/trietgia/nietzsche_portrait.png', // Fallback image
+                image: 'images/trietgia/h0-chi-minh.jfif',
                 quote: 'Không có gì quý hơn độc lập tự do.',
                 description: 'Lãnh tụ cách mạng và Chủ tịch nước Việt Nam',
                 month: 11
@@ -375,8 +375,15 @@ class PhilosophyCalendar {
         document.getElementById('quoteAuthor').textContent = `— ${philosopher.nameVi}`;
         
         const imageElement = document.getElementById('philosopherImage');
-        imageElement.src = philosopher.image;
-        imageElement.alt = philosopher.nameVi;
+        
+        // Ẩn ảnh nếu không có
+        if (philosopher.image && philosopher.image.trim() !== '') {
+            imageElement.src = philosopher.image;
+            imageElement.alt = philosopher.nameVi;
+            imageElement.style.display = 'block';
+        } else {
+            imageElement.style.display = 'none';
+        }
         
         // Add fade effect
         const philosopherSection = document.querySelector('.philosopher-section');
