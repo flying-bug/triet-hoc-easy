@@ -92,7 +92,7 @@ class PhilosophyCalendar {
                 name: 'Karl Marx',
                 nameVi: 'Karl Marx',
                 years: '1818 - 1883',
-                image: '', // Chưa có ảnh
+                image: 'images/trietgia/cac-mac.jpg',
                 quote: 'Các triết gia chỉ giải thích thế giới theo nhiều cách khác nhau, vấn đề là thay đổi nó.',
                 description: 'Triết gia, kinh tế học gia và nhà cách mạng Đức',
                 month: 8
@@ -101,7 +101,7 @@ class PhilosophyCalendar {
                 name: 'Friedrich Engels',
                 nameVi: 'Friedrich Engels',
                 years: '1820 - 1895',
-                image: '', // Chưa có ảnh
+                image: 'images/trietgia/engel.jpg',
                 quote: 'Kiến thức là khoa học về những quy luật chung nhất của tự nhiên, xã hội và tư duy.',
                 description: 'Triết gia và nhà lý thuyết cách mạng Đức',
                 month: 9
@@ -110,7 +110,7 @@ class PhilosophyCalendar {
                 name: 'Vladimir Lenin',
                 nameVi: 'Vladimir Lenin',
                 years: '1870 - 1924',
-                image: '', // Chưa có ảnh
+                image: 'images/trietgia/le-nin.webp',
                 quote: 'Không có lý luận cách mạng thì không có phong trào cách mạng.',
                 description: 'Nhà cách mạng và lãnh tụ chính trị Nga',
                 month: 10
