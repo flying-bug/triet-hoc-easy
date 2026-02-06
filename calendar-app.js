@@ -411,22 +411,161 @@ class PhilosophyCalendar {
         // Sort events by date
         currentMonthEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
         
+        // Danh sách câu chúc tốt đẹp - phân theo chủ đề
+        const blessings = [
+            // 💫 Chung – Hạnh phúc
+            'Chúc bạn luôn vui vẻ và tràn đầy năng lượng.',
+            'Mong mỗi ngày của bạn đều thật ý nghĩa.',
+            'Chúc bạn luôn gặp nhiều may mắn trong cuộc sống.',
+            'Mong bạn luôn mỉm cười dù bất cứ điều gì xảy ra.',
+            'Chúc bạn luôn bình an trong tâm hồn.',
+            'Hy vọng bạn đạt được mọi điều mình mong muốn.',
+            'Chúc bạn ngày càng trưởng thành và mạnh mẽ.',
+            'Mong cuộc sống luôn nhẹ nhàng với bạn.',
+            'Chúc bạn luôn được yêu thương.',
+            'Hy vọng bạn luôn tìm thấy niềm vui nhỏ mỗi ngày.',
+            
+            // 🌟 Thành công – Công việc – Học tập
+            'Chúc bạn học tập thật tốt và đạt kết quả cao.',
+            'Mong bạn luôn thăng tiến trong công việc.',
+            'Chúc mọi dự án của bạn đều thành công.',
+            'Hy vọng bạn luôn giữ được đam mê.',
+            'Chúc bạn đạt được mục tiêu đã đặt ra.',
+            'Mong bạn luôn tự tin vào bản thân.',
+            'Chúc bạn vượt qua mọi thử thách.',
+            'Hy vọng con đường sự nghiệp luôn rộng mở.',
+            'Chúc bạn luôn sáng tạo và đổi mới.',
+            'Mong bạn học được nhiều điều hay mỗi ngày.',
+            
+            // 💖 Sức khỏe – Bình an
+            'Chúc bạn thật nhiều sức khỏe.',
+            'Mong bạn luôn mạnh mẽ và dẻo dai.',
+            'Chúc bạn ngủ ngon và ăn ngon.',
+            'Hy vọng bạn luôn tràn đầy năng lượng tích cực.',
+            'Chúc bạn luôn bình an trên mọi hành trình.',
+            'Mong bạn luôn khỏe mạnh cả thể chất lẫn tinh thần.',
+            'Chúc bạn luôn an toàn.',
+            'Hy vọng mỗi ngày bạn đều cảm thấy nhẹ nhõm.',
+            'Chúc bạn luôn giữ được tinh thần lạc quan.',
+            'Mong bạn có cuộc sống cân bằng.',
+            
+            // 🎂 Dịp đặc biệt – Sinh nhật
+            'Chúc bạn tuổi mới thật rực rỡ.',
+            'Mong mọi điều ước sinh nhật đều thành sự thật.',
+            'Chúc bạn thêm tuổi mới thêm hạnh phúc.',
+            'Hy vọng năm mới của bạn thật tuyệt vời.',
+            'Chúc bạn luôn trẻ trung và yêu đời.',
+            'Mong bạn nhận được nhiều quà và niềm vui.',
+            'Chúc bạn luôn tỏa sáng theo cách riêng.',
+            'Hy vọng năm tới mang đến nhiều cơ hội mới.',
+            'Chúc bạn một ngày sinh nhật đáng nhớ.',
+            'Mong bạn luôn được bao quanh bởi người thương.',
+            
+            // 🤝 Tình bạn – Quan hệ
+            'Chúc tình bạn của chúng ta luôn bền lâu.',
+            'Mong bạn luôn gặp được người tốt.',
+            'Chúc bạn có nhiều người bạn chân thành.',
+            'Hy vọng bạn luôn được thấu hiểu.',
+            'Chúc bạn luôn được trân trọng.',
+            'Mong các mối quan hệ của bạn ngày càng tốt đẹp.',
+            'Chúc bạn luôn nhận được sự giúp đỡ khi cần.',
+            'Hy vọng bạn luôn có người đồng hành.',
+            'Chúc bạn lan tỏa năng lượng tích cực.',
+            'Mong bạn luôn được yêu quý.',
+            
+            // 💕 Tình cảm – Hạnh phúc
+            'Chúc bạn luôn hạnh phúc trong tình yêu.',
+            'Mong trái tim bạn luôn ấm áp.',
+            'Chúc bạn tìm được người thật sự phù hợp.',
+            'Hy vọng tình yêu của bạn ngày càng bền chặt.',
+            'Chúc bạn luôn được quan tâm và chăm sóc.',
+            'Mong bạn luôn cảm thấy đủ đầy.',
+            'Chúc bạn luôn biết yêu bản thân.',
+            'Hy vọng bạn luôn tin vào tình yêu.',
+            'Chúc bạn có những khoảnh khắc lãng mạn.',
+            'Mong bạn luôn mỉm cười khi nghĩ về ai đó.',
+            
+            // 🌈 Động lực – Tinh thần
+            'Chúc bạn không bao giờ bỏ cuộc.',
+            'Mong bạn luôn mạnh mẽ trước khó khăn.',
+            'Chúc bạn luôn dám ước mơ lớn.',
+            'Hy vọng bạn luôn tiến về phía trước.',
+            'Chúc bạn tin vào chính mình.',
+            'Mong bạn luôn kiên trì.',
+            'Chúc bạn luôn nhìn thấy ánh sáng cuối đường.',
+            'Hy vọng bạn học được từ mọi thất bại.',
+            'Chúc bạn luôn giữ được hy vọng.',
+            'Mong bạn luôn có động lực mỗi ngày.',
+            
+            // ✨ Cuộc sống – Tương lai
+            'Chúc tương lai của bạn thật rực rỡ.',
+            'Mong bạn có nhiều trải nghiệm đáng nhớ.',
+            'Chúc bạn đi đến nhiều nơi thú vị.',
+            'Hy vọng bạn khám phá được nhiều điều mới.',
+            'Chúc bạn sống đúng với đam mê.',
+            'Mong bạn luôn tự do theo đuổi ước mơ.',
+            'Chúc bạn luôn gặp đúng thời điểm.',
+            'Hy vọng bạn luôn chọn đúng hướng đi.',
+            'Chúc bạn sống một cuộc đời đáng tự hào.',
+            'Mong bạn luôn cảm thấy biết ơn cuộc sống.',
+            
+            // 🌼 Lời chúc nhẹ nhàng mỗi ngày
+            'Chúc bạn một ngày tốt lành.',
+            'Mong hôm nay của bạn thật suôn sẻ.',
+            'Chúc bạn buổi sáng tràn đầy năng lượng.',
+            'Hy vọng buổi tối của bạn thật bình yên.',
+            'Chúc bạn luôn gặp điều tích cực.',
+            'Mong bạn luôn tìm thấy lý do để cười.',
+            'Chúc bạn một tuần thật hiệu quả.',
+            'Hy vọng tháng mới mang nhiều niềm vui.',
+            'Chúc bạn luôn thấy cuộc sống đáng yêu.',
+            'Mong mỗi ngày bạn đều tốt hơn hôm qua.',
+            
+            // 🎉 Tổng hợp – Đa năng
+            'Chúc mọi điều tốt đẹp nhất đến với bạn.',
+            'Mong bạn luôn đạt được điều mình cần.',
+            'Chúc bạn luôn vững vàng trên con đường đã chọn.',
+            'Hy vọng bạn có thật nhiều kỷ niệm đẹp.',
+            'Chúc bạn luôn tự tin và tỏa sáng.',
+            'Mong bạn không bao giờ mất niềm tin.',
+            'Chúc bạn luôn sống trọn từng khoảnh khắc.',
+            'Hy vọng cuộc sống luôn ưu ái bạn.',
+            'Chúc bạn luôn gặp điều bất ngờ dễ thương.',
+            'Mong bạn có một cuộc đời thật ý nghĩa và hạnh phúc.'
+        ];
+        
         eventsList.innerHTML = currentMonthEvents.map((event, index) => {
             const eventDate = new Date(event.date);
             const day = eventDate.getDate();
             const formattedDate = `${day}/${eventDate.getMonth() + 1}`;
+            const blessing = blessings[index % blessings.length];
             
             return `
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">${formattedDate}</div>
-                        <div class="timeline-title">${event.title}</div>
-                        <div class="timeline-description">${event.description}</div>
+                    <div class="timeline-content-wrapper" onclick="flipEventCard(this)">
+                        <div class="timeline-content-inner">
+                            <div class="timeline-content timeline-front">
+                                <div class="timeline-date">${formattedDate}</div>
+                                <div class="timeline-title">${event.title}</div>
+                                <div class="timeline-description">${event.description}</div>
+                                <div class="flip-hint">👆 Nhấn để xem lời chúc</div>
+                            </div>
+                            <div class="timeline-content timeline-back">
+                                <div class="blessing-icon">🎉</div>
+                                <div class="blessing-text">${blessing}</div>
+                                <div class="flip-hint">👆 Nhấn để quay lại</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
         }).join('');
+        
+        // Add flip function to window for global access
+        window.flipEventCard = function(element) {
+            element.classList.toggle('flipped');
+        };
     }
     
     async showFengShuiInfo(year, month, day) {
